@@ -1,0 +1,20 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+
+	CARGAR UNA NUEVA NOVEDAD
+	<div style="margin: 50px;">
+		<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+			{{form.as_p}}
+
+
+			<input type="submit" name="Guardar" value="Guardar">
+
+
+
+		</form>
+
+	</div>
+
+{% endblock content %}
+

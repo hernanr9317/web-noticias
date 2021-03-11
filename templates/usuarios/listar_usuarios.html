@@ -1,0 +1,18 @@
+
+{% extends 'base.html'  %}
+
+	{% block content %}
+
+		<h3>LISTA DE USUARIOS</h3>
+
+		{% for usuario in p %}
+			<p>{{usuario.username}}</p>
+			<p>{{usuario.email}}</p>
+			<p>{{usuario.first_name}}</p>
+			<p>{{usuario.last_name}}</p>
+			<p>-------------------</p>
+		{% endfor %}
+
+
+
+	{% endblock content %}	

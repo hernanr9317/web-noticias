@@ -1,0 +1,63 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/_bootswatch.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/_variables.scss' %}">
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">BLOG DE NOTICIAS</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarColor01">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="{% url 'home' %}">Home
+	          <span class="sr-only">(current)</span>
+	        </a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'novedades:listar' %}">Ver noticias</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'novedades:cargar_n'%}">Escribir noticia</a>
+	      </li>
+	      {% if user.is_staff %}
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'novedades:cargar_c'%}">Cargar nueva categoria</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'usuarios:listar_usuarios'%}">Listar Usuarios</a>
+	      </li>
+	      {% endif %}
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+	      {% if user.is_authenticated %}
+	      	<span>{{user.username}}</span>
+	      	<a href="{% url 'logout' %}">SALIR</a>
+	      {% else %}
+	      	<a href="{% url 'login' %}">ACCEDER /</a>
+	      	<a href="{% url 'usuarios:registrar_usuario' %}">REGISTRARSE</a>
+	      {% endif %}
+	      </button>
+	    </form>
+	  </div>
+	</nav>		
+
+			
+	{% block content %}
+
+	{% endblock content %}
+
+
+	<footer>WEB NOTICIAS</footer>
+</body>
+</html>

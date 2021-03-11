@@ -1,0 +1,21 @@
+
+{% extends 'base.html'  %}
+
+	{% block content %}
+
+		<h3>LISTA DE NOVEDADES</h3>
+
+		<h3>Filtro</h3>
+
+		{% for novedad in novedad_list %}
+			<p>{{novedad.nombre}}</p>
+			<p>{{novedad.categoria}}</p>
+			<p><img src="{{novedad.imagen.url}}" alt="{{image.name}}" style="width:150px;"></p>
+			<p>{{novedad.texto}}</p>
+			<p>-------------------</p>
+		{% endfor %}
+
+
+
+	{% endblock content %}	
+
