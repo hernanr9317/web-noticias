@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Categoria, Novedad
+from .models import *
 from django.forms.widgets import SelectDateWidget
 
 
@@ -8,7 +8,7 @@ class Formulario_Alta_Novedad(forms.ModelForm):
 
 	class Meta:
 		model = Novedad
-		fields = '__all__'
+		fields =  ['titulo','categoria','texto','imagen']
 
 class Formulario_Alta_Categoria(forms.ModelForm):
 
@@ -16,12 +16,17 @@ class Formulario_Alta_Categoria(forms.ModelForm):
 		model = Categoria
 		fields = '__all__'
 
-class Formulario_Fecha(forms.Form):
-	Fecha = forms.DateField(widget= SelectDateWidget())
-
 
 class Formulario_filtro(forms.ModelForm):
 
 	class Meta:
 		model = Novedad
 		fields = ['categoria']
+
+class ComentarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Comentario
+        fields = ['texto']
+
+

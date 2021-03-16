@@ -1,0 +1,37 @@
+{% extends 'base.html'  %}
+
+	{% block content %}
+
+
+	<div>
+		{% if request.user == novedad.author %}
+		<a class="btn btn-default" href="{% url 'novedades:Alta_edit' pk=novedad.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+		{% endif %}
+			{{novedad.author}}
+		<div class="date">
+			<p>{{novedad.published_date}}</p>
+		</div>
+			<h1><a href="">{{novedad.titulo}}</a></h1>
+			<h5>{{novedad.categoria}}</h5>
+			<img src="{{novedad.imagen.url}}" alt="{{image.name}}" style="width:500px;">
+			<br>
+			<br>
+			<p>{{novedad.texto|linebreaksbr}}</p>
+		<br>
+	</div>
+		<hr>
+{% for comentario in novedad.comentarios.all %}
+    <div class="comment">
+        <div class="date">{{ comentario.created_date }}</div>
+        <strong>{{ comentario.author }}</strong>
+        <p>{{ comentario.texto|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>Aún no hay comentarios</p>
+{% endfor %}
+	<a class="btn btn-default" href="{% url 'novedades:agregar_comentario' pk=novedad.pk %}">Comentar</a>
+
+
+
+
+	{% endblock content %}	

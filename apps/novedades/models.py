@@ -11,16 +11,26 @@ class Categoria(models.Model):
 		return self.nombre
 
 class Novedad(models.Model):
-	nombre = models.CharField(max_length = 50)
+	titulo = models.CharField(max_length = 200)
 	categoria = models.ForeignKey('Categoria', on_delete = models.CASCADE)
 	texto = models.TextField()
 	imagen = models.ImageField(upload_to = 'novedades')
 	author = models.ForeignKey('usuarios.Usuario', on_delete=models.CASCADE)
-	published_date = models.DateTimeField(blank=True, null=True)
+	published_date = models.DateTimeField()
 
-	def publish(self):
-		self.published_date = timezone.now()
-		self.save()
 	
 	def __str__(self):
-		return self.nombre
+		return self.titulo
+
+class Comentario(models.Model):
+    post = models.ForeignKey('novedades.Novedad', on_delete=models.CASCADE, related_name='comentarios')
+    author = models.ForeignKey('usuarios.Usuario', on_delete=models.CASCADE)
+    texto = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+
+    def __str__(self):
+        return self.text
+
+class Filtro_categoria(models.Model):
+	categoria = models.ForeignKey('Categoria', on_delete = models.CASCADE)

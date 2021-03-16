@@ -1,11 +1,13 @@
 {% extends 'base.html'  %}
 
 {% block content %}
+{% load crispy_forms_tags %}
+<div class="form-group">
 		<form method="POST">{%csrf_token%}
-			{{form.errors}}
-			<input type="text" name="username" placeholder="USUARIO">
-			<input type="password" name="password" placeholder="PASSWORD">
+			{{form|crispy}}
 
-			<input type="submit" name="" value="INICIAR SESION">
+
+			<input type="submit" name="" value="INICIAR SESION" class="btn btn-success">
 		</form>
+</div>
 {% endblock content %}

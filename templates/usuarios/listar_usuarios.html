@@ -2,17 +2,17 @@
 {% extends 'base.html'  %}
 
 	{% block content %}
-
+{% if user.is_staff %}
 		<h3>LISTA DE USUARIOS</h3>
 
 		{% for usuario in p %}
-			<p>{{usuario.username}}</p>
+			<p><h2>{{usuario.username}}</h2></p>
 			<p>{{usuario.email}}</p>
 			<p>{{usuario.first_name}}</p>
 			<p>{{usuario.last_name}}</p>
 			<p>-------------------</p>
 		{% endfor %}
 
-
+{% endif %}
 
 	{% endblock content %}	

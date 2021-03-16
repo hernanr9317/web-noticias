@@ -1,32 +1,32 @@
-
 {% extends 'base.html'  %}
+
+{% load bootstrap %}
 
 	{% block content %}
 <div class="content container">
-	<div>
-	    <br>
-		<h3>POSTS</h3>
-	</div>
-		<br>
-	<div class="post">
-		{% for novedad in novedad %}
+	<h2>Filtrar Posts</h2>
+
+	
+		<form>
+			{{ filter.form|bootstrap }}
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</form>
+		<hr>
+</div>
+<div class="post">
+	<ul>
+		{% for novedad in filter.qs %}
+		<li>
 			{{novedad.author}}
-		<div class="date">
 			<p>{{novedad.published_date}}</p>
-		</div>
-			<h1><a href="{% url 'novedades:post_detalle' pk=novedad.pk %}">{{novedad.titulo}}</a></h1>
+			<h1><a href="{% url 'novedades:post_detalle' novedad.id %} ">{{ novedad.titulo }}</a></h1>
 			<h5>{{novedad.categoria}}</h5>
 			<img src="{{novedad.imagen.url}}" alt="{{image.name}}" style="width:500px;">
-			<br>
-			<br>
 			<p>{{novedad.texto|linebreaksbr}}</p>
 			<a href="{% url 'novedades:post_detalle' pk=novedad.pk %}">Comentarios: {{ novedad.comentarios.count }}</a>
 			<hr>
-			{% endfor %}
-	</div>
+		</li>
+		{% endfor %}
+	</ul>
 </div>
-
-
-
-	{% endblock content %}	
-
+	{% endblock content %}			
