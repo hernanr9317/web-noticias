@@ -10,7 +10,7 @@ class PostFilter(django_filters.FilterSet):
 			('ascendente', 'Posts antiguos')
 		)
 
-	ordering = django_filters.ChoiceFilter(label='Ordenar', choices=CHOICES, method='filter_by_order')
+	ordering = django_filters.ChoiceFilter(label='Fecha', choices=CHOICES, method='filter_by_order')
 
 
 	class Meta:
